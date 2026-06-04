@@ -3,20 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protocolo de Mitigación - Joel</title>
+    <title>Para Antonella - Un Mensaje Especial</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-blue: #38bdf8;
+            --bg-gradient: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%); /* Fondo con toque celeste pastel */
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --text-main: #1e293b;
+            --text-muted: #475569;
+            --celeste-pastel: #bae6fd;
+            --celeste-fuerte: #0284c7;
             --accent-green: #10b981;
         }
 
+        /* Animación inicial */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-gradient);
             color: var(--text-main);
             margin: 0;
             padding: 20px;
@@ -27,73 +40,88 @@
         }
 
         .container {
-            max-width: 500px;
+            max-width: 480px;
             width: 100%;
             background: var(--card-bg);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px); /* Efecto vidrio esmerilado */
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.15);
             text-align: center;
             box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            animation: fadeInUp 1s ease-out;
         }
 
         h1 {
-            font-size: 1.4rem;
-            color: var(--text-main);
-            margin-bottom: 20px;
-            border-bottom: 1px solid #334155;
-            padding-bottom: 10px;
+            font-size: 1.6rem;
+            color: var(--celeste-fuerte);
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
+        /* Galería pulida con detalles interactivos */
         .gallery {
             display: flex;
-            gap: 12px;
+            gap: 16px;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .gallery img {
-            width: 45%;
-            height: 160px;
+            width: 46%;
+            height: 190px;
             object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #334155;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            border: 3px solid white;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.04) rotate(1deg);
         }
 
         .intro-text {
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             line-height: 1.6;
             color: var(--text-muted);
             text-align: justify;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        /* Contenedor dinámico de mensajes */
+        /* Cuadro de mensajes dinámicos con alegría y diseño */
         .message-box {
-            background-color: #0f172a;
-            border-left: 4px solid var(--accent-blue);
-            padding: 15px;
-            border-radius: 4px;
-            min-height: 60px;
+            background-color: rgba(186, 230, 253, 0.3); /* Fondo celeste pastel translúcido */
+            border: 1px dashed var(--celeste-fuerte);
+            padding: 20px;
+            border-radius: 16px;
+            min-height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 20px 0;
-            font-style: italic;
-            color: #e2e8f0;
-            font-size: 1rem;
+            margin: 25px 0;
+            font-style: normal;
+            font-weight: 500;
+            color: #0369a1;
+            font-size: 1.05rem;
+            line-height: 1.5;
             transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .btn {
             width: 100%;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 0.95rem;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             border: none;
-            transition: background-color 0.2s, transform 0.1s;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
         }
 
         .btn:active {
@@ -101,12 +129,13 @@
         }
 
         .btn-action {
-            background-color: var(--accent-blue);
-            color: #0f172a;
+            background-color: var(--celeste-fuerte);
+            color: white;
         }
 
         .btn-action:hover {
-            background-color: #7dd3fc;
+            background-color: #0369a1;
+            box-shadow: 0 6px 16px rgba(2, 132, 199, 0.3);
         }
 
         .btn-final {
@@ -114,55 +143,58 @@
             color: white;
             text-decoration: none;
             display: none;
-            margin-top: 15px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        .btn-final:hover {
+            background-color: #059669;
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
         }
 
         .highlight {
-            color: var(--accent-blue);
-            font-weight: 600;
+            color: var(--celeste-fuerte);
+            font-weight: 700;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Mitigación de Errores v2.0</h1>
+        <h1>Para Antonella ✨</h1>
         
-        <!-- Fotos autorizadas que ella te envió -->
+        <!-- Fotos bien enlazadas sin corchetes -->
         <div class="gallery">
-            <img src="[negrita_bella.jpeg]" alt="Momento 1">
-            <img src="[Negrita.jpeg]" alt="Momento 2">
+            <img src="negrita_bella.jpeg" alt="Momento 1">
+            <img src="Negrita.jpeg" alt="Momento 2">
         </div>
 
         <p class="intro-text">
-            Antonella, sé que el comentario del sábado fue una completa pendejada de mi parte y entiendo que se te haya ido el interés. No quiero aburrirte con textos largos ni llamadas, pero antes de dar la vuelta a la página, presiona el botón de abajo. Hay un par de cosas reales que no te alcancé a decir:
+            Antonella, sé que el comentario del sábado fue una completa estupidez de mi parte y entiendo perfectamente que te causara molestia. No quiero aburrirte con textos repetitivos ni llamadas incómodas, pero antes de que decidamos qué pasa después, diseñé este espacio para ti. Presiona el botón de abajo, hay algo real que quiero que leas:
         </p>
 
-        <!-- Cuadro interactivo donde irán cambiando los mensajes -->
         <div class="message-box" id="msg-display">
-            Presiona el botón para iniciar...
+            Presiona el botón para iniciar... 😊
         </div>
 
-        <!-- Botón interactivo -->
         <button class="btn btn-action" id="interact-btn" onclick="mostrarSiguiente()">
-            Descubrir motivo ✨
+            Descubrir motivo 🌟
         </button>
 
-        <!-- Enlace final a WhatsApp que se revelará al terminar -->
+        <!-- Enlace a tu WhatsApp definitivo -->
         <a href="https://wa.me/593995750360?text=Hola%20Joel,%20leí%20la%20página.%20Hablemos%20de%20lo%20del%20sábado." 
            class="btn btn-final" id="whatsapp-btn" target="_blank">
-            Escríbeme si estás lista para hablar
+            Escríbeme si estás lista para hablar 💬
         </a>
     </div>
 
     <script>
-        // Array de mensajes interactivos (halagos y razones maduras)
         const mensajes = [
-            "Me encantó tu autenticidad el sábado. Es rarísimo encontrar a alguien con quien conectar tan rápido y reírse de verdad.",
-            "Tienes una mirada y una energía que transmiten demasiada paz. Hacía mucho tiempo que no me sentía tan feliz y cómodo al lado de alguien.",
-            "Admiro mucho lo centrada que eres con tus metas y la universidad. Esa madurez fue lo que más me atrajo de ti desde el inicio.",
-            "Sé que las palabras se las lleva el viento, pero el Joel real no es el de la mala frase del sábado; soy el tipo que te demostró atención y respeto cada día.",
-            "Último motivo: No pretendo presionarte. Este sábado estaré libre y cenaré en [NOMBRE_DEL_RESTAURANTE_EN_GUAYAQUIL] a las 7:30 PM. Me encantaría que vengas para empezar de cero, con la pizarra limpia."
+            "Me encantó tu autenticidad el sábado. Es rarísimo encontrar hoy en día a alguien con quien conectar tan rápido y reírse de verdad.",
+            "Tienes una mirada y una energía que transmiten demasiada paz. Hacía mucho tiempo que no me sentía tan feliz y cómodo conversando con alguien.",
+            "Admiro un mundo lo centrada que eres con tus metas y la universidad. Esa madurez e inteligencia fue lo que más me atrajo de ti.",
+            "Sé que las palabras se las lleva el viento, pero el Joel real no es el de la mala frase del sábado; soy el tipo que te demostró atención, interés y respeto cada día.",
+            "Último motivo: No pretendo presionarte. Este sábado por la noche estaré libre y cenaré en [NOMBRE_DEL_RESTAURANTE_EN_GUAYAQUIL] a las 7:30 PM. Me encantaría que vengas para empezar de cero, con la pizarra limpia."
         ];
 
         let index = 0;
@@ -173,22 +205,23 @@
             const wsBtn = document.getElementById('whatsapp-btn');
 
             if (index < mensajes.length) {
-                // Cambia el texto con un efecto visual sencillo
                 display.style.opacity = 0;
+                display.style.transform = "scale(0.95)";
+                
                 setTimeout(() => {
                     display.innerText = mensajes[index];
                     display.style.opacity = 1;
+                    display.style.transform = "scale(1)";
                     index++;
                     
                     if (index === mensajes.length) {
-                        btn.innerText = "Finalizar lectura";
+                        btn.innerText = "Finalizar lectura ✨";
                     } else {
-                        btn.innerText = `Ver motivo siguiente (${index}/${mensajes.length - 1})`;
+                        btn.innerText = `Ver motivo siguiente (${index}/${mensajes.length - 1}) 💫`;
                     }
                 }, 200);
             } else {
-                // Flujo finalizado: Muestra la propuesta y activa el botón de WhatsApp
-                display.innerHTML = "La pelota está en tu cancha, Antonella. Si decides ir el sábado, ahí estaré. Si no, respetaré tu decisión y cerraré el libro con la frente en alto.";
+                display.innerHTML = "La pelota está en tu cancha, Antonella. Si decides darme esa oportunidad de demostrarte quién soy sin apuros, ahí estaré el sábado. Si no, entenderé, guardaré el mejor recuerdo del fin de semana y cerraré el libro con respeto.";
                 btn.style.display = 'none';
                 wsBtn.style.display = 'block';
             }
