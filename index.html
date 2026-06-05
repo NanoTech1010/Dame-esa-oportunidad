@@ -15,7 +15,6 @@
       --navy-mid: #2a5278;
       --navy-light: #5a8ab0;
       --navy-pale: rgba(22,53,84,0.08);
-      --white: #ffffff;
     }
 
     html, body {
@@ -41,34 +40,30 @@
       border-radius: 24px;
       width: 100%;
       max-width: 460px;
-      min-height: 560px;
       box-shadow: 0 8px 40px rgba(22,53,84,0.12), 0 1px 0 rgba(255,255,255,0.8) inset;
       overflow: hidden;
-      position: relative;
     }
 
-    /* screens */
     .screen {
       display: none;
       flex-direction: column;
       align-items: center;
-      padding: 2.5rem 2rem 2.5rem;
-      min-height: 560px;
+      padding: 2.5rem 2rem;
       animation: rise 0.65s cubic-bezier(.22,.8,.36,1) both;
     }
     .screen.active { display: flex; }
 
     @keyframes rise {
-      from { opacity: 0; transform: translateY(22px); }
+      from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* progress dots */
+    /* dots */
     .dots {
       display: flex;
       gap: 7px;
       justify-content: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.8rem;
     }
     .dot {
       width: 7px; height: 7px;
@@ -76,10 +71,7 @@
       background: rgba(22,53,84,0.18);
       transition: background 0.35s, transform 0.35s;
     }
-    .dot.on {
-      background: var(--navy);
-      transform: scale(1.2);
-    }
+    .dot.on { background: var(--navy); transform: scale(1.25); }
 
     /* typography */
     .eyebrow {
@@ -88,77 +80,76 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--navy-light);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
     }
 
-    h1, h2 {
+    h1 {
       font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 500;
       color: var(--navy);
+      text-align: center;
+      margin-bottom: 0.4rem;
       line-height: 1.2;
     }
-
-    h1 { font-size: 32px; font-weight: 500; margin-bottom: 0.4rem; }
     h1 em { font-style: italic; }
 
-    h2 { font-size: 22px; font-weight: 400; margin-bottom: 1rem; }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--navy);
+      text-align: center;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
     h2 em { font-style: italic; }
+
+    .rule {
+      width: 40px; height: 1.5px;
+      background: rgba(22,53,84,0.22);
+      border-radius: 2px;
+      margin: 0 auto 1.4rem;
+    }
 
     .body {
       font-size: 14.5px;
       color: var(--navy-mid);
       line-height: 1.85;
       text-align: center;
-      max-width: 360px;
+      max-width: 380px;
+      margin-bottom: 1rem;
     }
 
-    .rule {
-      width: 40px; height: 1.5px;
-      background: rgba(22,53,84,0.25);
-      border-radius: 2px;
-      margin: 1.2rem auto;
-    }
-
-    /* photo styles */
+    /* photo */
     .photo-frame {
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 4px 20px rgba(22,53,84,0.15);
       margin-bottom: 1.8rem;
-    }
-
-    .photo-frame img {
       width: 100%;
+      max-width: 340px;
+    }
+    .photo-frame img {
+      width: 100%; height: 210px;
       display: block;
       object-fit: cover;
     }
+    .photo-frame.small { max-width: 260px; }
+    .photo-frame.small img { height: 170px; }
 
-    .photo-frame.large {
-      width: 100%;
-      max-width: 340px;
-      height: 220px;
-    }
-
-    .photo-frame.large img { height: 220px; }
-
-    .photo-frame.medium {
-      width: 100%;
-      max-width: 300px;
-      height: 180px;
-    }
-
-    .photo-frame.medium img { height: 180px; }
-
-    /* quote block */
+    /* quote */
     .quote {
-      background: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.65);
       border-left: 2.5px solid var(--navy);
       border-radius: 0 12px 12px 0;
       padding: 1.1rem 1.4rem;
       text-align: left;
-      max-width: 360px;
-      margin: 0 auto 1.8rem;
+      width: 100%;
+      max-width: 380px;
+      margin-bottom: 1.6rem;
     }
-
     .quote p {
       font-family: 'Playfair Display', serif;
       font-style: italic;
@@ -167,10 +158,52 @@
       line-height: 1.8;
     }
 
+    /* reason cards */
+    .reason-card {
+      background: rgba(255,255,255,0.65);
+      border-radius: 16px;
+      border: 1px solid rgba(22,53,84,0.1);
+      padding: 1.2rem 1.4rem;
+      width: 100%;
+      max-width: 380px;
+      margin-bottom: 1.4rem;
+      text-align: left;
+      animation: rise 0.5s cubic-bezier(.22,.8,.36,1) both;
+    }
+    .reason-card .reason-num {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy-light);
+      margin-bottom: 0.4rem;
+    }
+    .reason-card p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--navy);
+      line-height: 1.75;
+    }
+
+    .reasons-wrap {
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .reason-counter {
+      font-size: 12px;
+      color: var(--navy-light);
+      text-align: center;
+      margin-bottom: 0.8rem;
+      min-height: 18px;
+    }
+
     /* buttons */
     .btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       background: var(--navy);
       color: #d4e9f7;
@@ -183,8 +216,10 @@
       letter-spacing: 0.04em;
       cursor: pointer;
       transition: background 0.2s, transform 0.15s;
-      margin-top: 0.75rem;
+      margin-top: 0.5rem;
       text-decoration: none;
+      width: 100%;
+      max-width: 380px;
     }
     .btn:hover { background: #0e2236; transform: translateY(-1px); }
     .btn:active { transform: scale(0.97); }
@@ -192,7 +227,7 @@
     .btn-ghost {
       background: transparent;
       color: var(--navy);
-      border: 1.5px solid rgba(22,53,84,0.35);
+      border: 1.5px solid rgba(22,53,84,0.3);
     }
     .btn-ghost:hover { background: var(--navy-pale); }
 
@@ -202,23 +237,35 @@
     }
     .btn-wa:hover { background: #1cb357; }
 
-    /* divider with icon */
     .icon-circle {
       width: 64px; height: 64px;
       border-radius: 50%;
       background: rgba(22,53,84,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       margin: 0 auto 1.4rem;
     }
 
-    /* final screen extras */
     .soft-note {
       font-size: 12.5px;
       color: var(--navy-light);
       text-align: center;
-      margin-top: 0.6rem;
+      margin-top: 0.8rem;
+      max-width: 340px;
+      line-height: 1.6;
+    }
+
+    .final-msg {
+      background: rgba(255,255,255,0.65);
+      border-radius: 16px;
+      border: 1px solid rgba(22,53,84,0.1);
+      padding: 1.3rem 1.5rem;
+      width: 100%;
+      max-width: 380px;
+      margin-bottom: 1.6rem;
+      font-size: 14px;
+      color: var(--navy-mid);
+      line-height: 1.85;
+      text-align: left;
     }
   </style>
 </head>
@@ -234,15 +281,14 @@
         <div class="dot"></div>
         <div class="dot"></div>
       </div>
-
-      <div class="photo-frame large">
+      <div class="photo-frame">
         <img src="negrita_bella.jpeg" alt="Antonella" />
       </div>
-
       <p class="eyebrow">Un mensaje para ti</p>
-      <h1>Para <em>Antonella</em></h1>
+      <h1>Para <em>Antonella</em> ✨</h1>
       <div class="rule"></div>
-      <p class="body">Sé que ahora mismo no me merezco tu tiempo. Pero si me das unos segundos, quiero decirte algo que no supe decir bien.</p>
+      <p class="body">Antonella, sé que algunos comentarios del sábado fue una completa estupidez de mi parte y entiendo perfectamente que te causara molestia. No quiero aburrirte con textos largos en WhatsApp, pero estoy realmente arrepentido de haber dañado el gran momento que pasamos.</p>
+      <p class="body">Diseñé este espacio exclusivamente para ti porque quería demostrarte con hechos, y con mi trabajo, que me importas.</p>
       <button class="btn" onclick="go(1)">Quiero leer &nbsp;→</button>
     </div>
 
@@ -254,19 +300,20 @@
         <div class="dot"></div>
         <div class="dot"></div>
       </div>
-
       <p class="eyebrow">Lo que pasó</p>
       <h2>Metí la pata.<br><em>Sin excusas.</em></h2>
       <div class="rule"></div>
-
-      <p class="body">Esa frase que dije el sábado fue una estupidez. La solté sin pensar en el peor momento. No te estaba describiendo a ti — pero entiendo perfectamente por qué te hizo sentir mal, y tienes toda la razón en haberte alejado.</p>
-
-      <p class="body" style="margin-top: 1rem;">No vine a justificarme. Vine a pedirte perdón de verdad.</p>
-
+      <div class="quote">
+        <p>Esa frase fue una estupidez que solté sin pensar. No te estaba describiendo a ti — pero entiendo perfectamente por qué te hizo sentir mal, y tienes toda la razón en haberte alejado.</p>
+      </div>
+      <div class="quote">
+        <p>El Joel real no es el de la mala frase del sábado; soy el tipo que te demostró atención, interés y respeto cada día.</p>
+      </div>
+      <p class="body">No vine a justificarme. Vine a pedirte perdón de verdad.</p>
       <button class="btn" onclick="go(2)">Continuar &nbsp;→</button>
     </div>
 
-    <!-- PANTALLA 2: Lo que siento con foto 2 -->
+    <!-- PANTALLA 2: Los 5 motivos con foto 2 -->
     <div class="screen" id="s2">
       <div class="dots">
         <div class="dot"></div>
@@ -274,25 +321,20 @@
         <div class="dot on"></div>
         <div class="dot"></div>
       </div>
-
-      <p class="eyebrow">Lo que siento</p>
+      <p class="eyebrow">Por qué me importas</p>
       <h2>Estas dos semanas<br><em>sí importan</em></h2>
       <div class="rule"></div>
-
-      <div class="photo-frame medium">
+      <div class="photo-frame small">
         <img src="Negrita.jpeg" alt="Antonella" />
       </div>
-
-      <div class="quote">
-        <p>Vi cómo eres — la manera en que hablas, cómo te ríes, lo cómodo que me haces sentir. Eso no se consigue fácil, y no quiero perderlo por una frase estúpida.</p>
+      <div class="reasons-wrap">
+        <p class="reason-counter" id="reason-counter">Presiona para descubrir cada motivo</p>
+        <div id="reasons-container"></div>
+        <button class="btn" id="reason-btn" onclick="mostrarMotivo()">Descubrir motivo 🌟</button>
       </div>
-
-      <p class="body">Construí esta página para demostrarte con hechos que me importas. No es solo un mensaje — es tiempo, es esfuerzo, eres tú.</p>
-
-      <button class="btn" onclick="go(3)">Ver el final &nbsp;→</button>
     </div>
 
-    <!-- PANTALLA 3: Cierre con WhatsApp -->
+    <!-- PANTALLA 3: Cierre personal + WhatsApp -->
     <div class="screen" id="s3">
       <div class="dots">
         <div class="dot"></div>
@@ -300,35 +342,63 @@
         <div class="dot"></div>
         <div class="dot on"></div>
       </div>
-
       <div class="icon-circle">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#163554" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
       </div>
-
-      <p class="eyebrow">Mi pregunta</p>
-      <h2 style="font-size:26px;">¿Me das<br><em>otra oportunidad?</em></h2>
+      <p class="eyebrow">La decisión es tuya</p>
+      <h2>¿Me das<br><em>otra oportunidad?</em></h2>
       <div class="rule"></div>
-
-      <p class="body">No te pido que olvides lo que pasó. Solo te pido la oportunidad de seguir construyendo algo que, cuando empezó, a los dos nos gustaba.</p>
-
+      <div class="final-msg">
+        La decisión está en tus manos, por favor deja ese orgullo Antonella. Sé que este sábado tu mami viaja y tienes la responsabilidad de cuidar a tu papi, o que quizás salgas un rato con tus amigos del ex trabajo. No quiero presionarte con una cita rígida: si tienes un tiempo libre y deseas que borremos ese mal momento para tomarnos un café, conversar, o si prefieres que te caiga a ver un ratito para entregarte un postre y no dejarte sola, me haría muy feliz.
+      </div>
       <a class="btn btn-wa" href="https://wa.me/593995750360?text=Mi%20respuesta%20es..." target="_blank">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="white">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        Escribirle ahora
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Escríbeme por favor 🥺
       </a>
-
-      <p class="soft-note" style="margin-top: 1rem;">Si estás lista para hablar, aquí estoy.</p>
-
-      <button class="btn btn-ghost" style="margin-top: 1rem; font-size: 12.5px;" onclick="go(0)">Volver al inicio</button>
+      <button class="btn btn-ghost" style="margin-top:12px; font-size:13px;" onclick="go(0)">Volver al inicio</button>
     </div>
 
   </div>
 </div>
 
 <script>
+  const motivos = [
+    { num: "01", texto: "Me encantó tu autenticidad que transmites. Es rarísimo encontrar hoy en día a alguien con quien conectar tan rápido y reírse de verdad." },
+    { num: "02", texto: "Tienes una mirada y una energía que transmiten demasiada paz. Hacía mucho tiempo que no me sentía tan feliz y cómodo al lado de alguien." },
+    { num: "03", texto: "Admiro un mundo lo centrada que eres con tus metas y la universidad. Esa madurez e inteligencia fue lo que más me atrajo de ti desde el inicio." },
+    { num: "04", texto: "Eres una persona amable y de gran corazón que en el poco tiempo que te vengo conociendo me he sentido querido y escuchado, motivo de valorarte aún más." },
+    { num: "05", texto: "Sé que las palabras se las lleva el viento, pero el Joel real no es el de la mala frase del sábado; soy el tipo que te demostró atención, interés y respeto cada día." }
+  ];
+
+  let motivoIdx = 0;
+
+  function mostrarMotivo() {
+    const container = document.getElementById('reasons-container');
+    const btn = document.getElementById('reason-btn');
+    const counter = document.getElementById('reason-counter');
+
+    if (motivoIdx < motivos.length) {
+      const m = motivos[motivoIdx];
+      const card = document.createElement('div');
+      card.className = 'reason-card';
+      card.innerHTML = `<div class="reason-num">Motivo ${m.num}</div><p>${m.texto}</p>`;
+      container.appendChild(card);
+      motivoIdx++;
+
+      if (motivoIdx < motivos.length) {
+        counter.innerText = `${motivoIdx} de ${motivos.length} motivos`;
+        btn.innerText = `Ver motivo siguiente 💫`;
+      } else {
+        counter.innerText = `${motivos.length} de ${motivos.length} motivos`;
+        btn.innerText = 'Ver el cierre ✨';
+      }
+    } else {
+      go(3);
+    }
+  }
+
   function go(n) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById('s' + n).classList.add('active');
