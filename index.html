@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Antonella - Un Mensaje Especial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #d4e9f7;
+      --bg-card: #eaf4fc;
+      --navy: #163554;
+      --navy-mid: #2a5278;
+      --navy-light: #5a8ab0;
+      --navy-pale: rgba(22,53,84,0.08);
+      --white: #ffffff;
+    }
+
+    html, body {
+      min-height: 100%;
+      background: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 10%, rgba(255,255,255,0.45) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 80% 90%, rgba(22,53,84,0.08) 0%, transparent 70%),
+        var(--bg);
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 460px;
+      min-height: 560px;
+      box-shadow: 0 8px 40px rgba(22,53,84,0.12), 0 1px 0 rgba(255,255,255,0.8) inset;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* screens */
+    .screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 2rem 2.5rem;
+      min-height: 560px;
+      animation: rise 0.65s cubic-bezier(.22,.8,.36,1) both;
+    }
+    .screen.active { display: flex; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* progress dots */
+    .dots {
+      display: flex;
+      gap: 7px;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(22,53,84,0.18);
+      transition: background 0.35s, transform 0.35s;
+    }
+    .dot.on {
+      background: var(--navy);
+      transform: scale(1.2);
+    }
+
+    /* typography */
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--navy-light);
+      margin-bottom: 0.6rem;
+    }
+
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    h1 { font-size: 32px; font-weight: 500; margin-bottom: 0.4rem; }
+    h1 em { font-style: italic; }
+
+    h2 { font-size: 22px; font-weight: 400; margin-bottom: 1rem; }
+    h2 em { font-style: italic; }
+
+    .body {
+      font-size: 14.5px;
+      color: var(--navy-mid);
+      line-height: 1.85;
+      text-align: center;
+      max-width: 360px;
+    }
+
+    .rule {
+      width: 40px; height: 1.5px;
+      background: rgba(22,53,84,0.25);
+      border-radius: 2px;
+      margin: 1.2rem auto;
+    }
+
+    /* photo styles */
+    .photo-frame {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(22,53,84,0.15);
+      margin-bottom: 1.8rem;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .photo-frame.large {
+      width: 100%;
+      max-width: 340px;
+      height: 220px;
+    }
+
+    .photo-frame.large img { height: 220px; }
+
+    .photo-frame.medium {
+      width: 100%;
+      max-width: 300px;
+      height: 180px;
+    }
+
+    .photo-frame.medium img { height: 180px; }
+
+    /* quote block */
+    .quote {
+      background: rgba(255,255,255,0.7);
+      border-left: 2.5px solid var(--navy);
+      border-radius: 0 12px 12px 0;
+      padding: 1.1rem 1.4rem;
+      text-align: left;
+      max-width: 360px;
+      margin: 0 auto 1.8rem;
+    }
+
+    .quote p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--navy);
+      line-height: 1.8;
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--navy);
+      color: #d4e9f7;
+      border: none;
+      border-radius: 50px;
+      padding: 13px 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.75rem;
+      text-decoration: none;
+    }
+    .btn:hover { background: #0e2236; transform: translateY(-1px); }
+    .btn:active { transform: scale(0.97); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--navy);
+      border: 1.5px solid rgba(22,53,84,0.35);
+    }
+    .btn-ghost:hover { background: var(--navy-pale); }
+
+    .btn-wa {
+      background: #25D366;
+      color: #fff;
+    }
+    .btn-wa:hover { background: #1cb357; }
+
+    /* divider with icon */
+    .icon-circle {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: rgba(22,53,84,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.4rem;
+    }
+
+    /* final screen extras */
+    .soft-note {
+      font-size: 12.5px;
+      color: var(--navy-light);
+      text-align: center;
+      margin-top: 0.6rem;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="card">
+
+    <!-- PANTALLA 0: Inicio con foto 1 -->
+    <div class="screen active" id="s0">
+      <div class="dots">
+        <div class="dot on"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+
+      <div class="photo-frame large">
+        <img src="negrita_bella.jpeg" alt="Antonella" />
+      </div>
+
+      <p class="eyebrow">Un mensaje para ti</p>
+      <h1>Para <em>Antonella</em></h1>
+      <div class="rule"></div>
+      <p class="body">Sé que ahora mismo no me merezco tu tiempo. Pero si me das unos segundos, quiero decirte algo que no supe decir bien.</p>
+      <button class="btn" onclick="go(1)">Quiero leer &nbsp;→</button>
+    </div>
+
+    <!-- PANTALLA 1: Lo que pasó -->
+    <div class="screen" id="s1">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot on"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+
+      <p class="eyebrow">Lo que pasó</p>
+      <h2>Metí la pata.<br><em>Sin excusas.</em></h2>
+      <div class="rule"></div>
+
+      <p class="body">Esa frase que dije el sábado fue una estupidez. La solté sin pensar en el peor momento. No te estaba describiendo a ti — pero entiendo perfectamente por qué te hizo sentir mal, y tienes toda la razón en haberte alejado.</p>
+
+      <p class="body" style="margin-top: 1rem;">No vine a justificarme. Vine a pedirte perdón de verdad.</p>
+
+      <button class="btn" onclick="go(2)">Continuar &nbsp;→</button>
+    </div>
+
+    <!-- PANTALLA 2: Lo que siento con foto 2 -->
+    <div class="screen" id="s2">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot on"></div>
+        <div class="dot"></div>
+      </div>
+
+      <p class="eyebrow">Lo que siento</p>
+      <h2>Estas dos semanas<br><em>sí importan</em></h2>
+      <div class="rule"></div>
+
+      <div class="photo-frame medium">
+        <img src="Negrita.jpeg" alt="Antonella" />
+      </div>
+
+      <div class="quote">
+        <p>Vi cómo eres — la manera en que hablas, cómo te ríes, lo cómodo que me haces sentir. Eso no se consigue fácil, y no quiero perderlo por una frase estúpida.</p>
+      </div>
+
+      <p class="body">Construí esta página para demostrarte con hechos que me importas. No es solo un mensaje — es tiempo, es esfuerzo, eres tú.</p>
+
+      <button class="btn" onclick="go(3)">Ver el final &nbsp;→</button>
+    </div>
+
+    <!-- PANTALLA 3: Cierre con WhatsApp -->
+    <div class="screen" id="s3">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot on"></div>
+      </div>
+
+      <div class="icon-circle">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#163554" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+
+      <p class="eyebrow">Mi pregunta</p>
+      <h2 style="font-size:26px;">¿Me das<br><em>otra oportunidad?</em></h2>
+      <div class="rule"></div>
+
+      <p class="body">No te pido que olvides lo que pasó. Solo te pido la oportunidad de seguir construyendo algo que, cuando empezó, a los dos nos gustaba.</p>
+
+      <a class="btn btn-wa" href="https://wa.me/593995750360?text=Mi%20respuesta%20es..." target="_blank">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Escribirle ahora
+      </a>
+
+      <p class="soft-note" style="margin-top: 1rem;">Si estás lista para hablar, aquí estoy.</p>
+
+      <button class="btn btn-ghost" style="margin-top: 1rem; font-size: 12.5px;" onclick="go(0)">Volver al inicio</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function go(n) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('s' + n).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
